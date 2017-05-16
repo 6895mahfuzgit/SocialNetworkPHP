@@ -3,6 +3,12 @@
    margin: 0;
 }
 
+.clear{
+
+  clear: both;
+  float: none;
+}
+
 #page{
 width: 1000px;
 margin: 0px auto;
@@ -35,7 +41,41 @@ margin: 0px auto;
   font-size: 20px;
 }
 
-/*body{
-  background: red;
+#header{
+width: 100%;
+padding: 10px;
+background: #333333;
+height: 40px;
 
-}*/
+}
+#header{
+background: #333333;
+height: 40px;
+padding: 5px;
+
+}
+
+#header .logo{
+  float: left;
+  color: #fff;
+  font-size: 30px
+}
+
+#header .nav{
+  float: right;
+}
+
+#header .nav a li{
+  display: inline-block;
+    margin-top: 10px;
+}
+#header .nav ul a {
+
+  padding: 10px;
+  color: #fff;
+  border-left:1px solid #555555;
+}
+
+#header .nav ul a:hover {
+background: #555555;
+}

@@ -2,7 +2,7 @@
      include('header.php');
      include("includes/config.php");
 
-      session_start();
+      // session_start();
 
      $error='';
      $success='';
