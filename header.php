@@ -4,6 +4,7 @@
       <head>
           <title>Social Network</title>
           <link rel="stylesheet" href="includes/styles/styles.css"/>
+          <script src="includes/jquery/jquery.js"></script>
       </head>
 <body>
      <div id="page" >
@@ -24,7 +25,7 @@
                         ?>
                                <ul>
                                    <a href="index.php"><li>Home</li></a>
-                                   <a href="timeline.php"><li>TimeLine</li></a>
+                                   <a href="user.php?name=<?=$_SESSION['name'];?>"><li>TimeLine</li></a>
                                    <a href="profile.php"><li>Profile</li></a>
                                    <a href="message.php"><li>Messages</li></a>
                                    <a href="logout.php"><li>Logout</li></a>

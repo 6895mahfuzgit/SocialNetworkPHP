@@ -6,6 +6,7 @@
 
      $error='';
      $success='';
+     $country='';
      $userId=$_SESSION['members_id'];
 
      $select=mysqli_query($db,"SELECT * FROM profile where user_id='$userId'");
@@ -22,6 +23,7 @@
        $education3=$result['edu3'];
        $dob=$result['dob'];
        $country=$result['country'];
+       $pic=$result['pic'];
 
 
 
@@ -40,11 +42,24 @@
 
 
                           if(!empty($about) and !empty($gender) and !empty($education1) and !empty($education2) and !empty($education3) and !empty($dob) and  !empty($country)){
-                                 $insert="UPDATE profile set  about='$about', gender='$gender', dob='$dob', edu1='$education1', edu2='$education2', edu3='$education3', country='$country', date_added=NOW() where user_id='$userId'";
 
-                                mysqli_query($db,$insert);
+                                     //var_dump($_FILES);
+                                  $fileName=$_FILES['ppicture']['name'];
+                                  $tempName= $_FILES['ppicture']['tmp_name'];
+                                  $fileName=rand(9999,10000).date('Ymdhis').$fileName;
+                                  move_uploaded_file($tempName,'uploads/'.$fileName);
+                                   if($tempName==null){
 
-                                $success.='Updated !';
+                                       $insert="UPDATE profile set  about='$about', gender='$gender', dob='$dob', edu1='$education1', edu2='$education2', edu3='$education3', country='$country', date_added=NOW() where user_id='$userId'";
+                                       mysqli_query($db,$insert);
+                                   }
+                                   else {
+
+                                      $insert="UPDATE profile set  about='$about',pic='$fileName', gender='$gender', dob='$dob', edu1='$education1', edu2='$education2', edu3='$education3', country='$country', date_added=NOW() where user_id='$userId'";
+                                      mysqli_query($db,$insert);
+                                   }
+
+                                 $success.='Updated !';
                             }
                          else {
                                 $error.='Can not Insert Data Error Occured!!!!!!';
@@ -74,7 +89,14 @@
 
 
                    if(!empty($about) and !empty($gender) and !empty($education1) and !empty($education2) and !empty($education3) and !empty($dob) and  !empty($country)){
-                          $insert="INSERT INTO profile set id='', about='$about', gender='$gender', dob='$dob', edu1='$education1', edu2='$education2', edu3='$education3', country='$country', date_added=NOW(), user_id='$userId'";
+
+
+                                $fileName=$_FILES['ppicture']['name'];
+                                $tempName= $_FILES['ppicture']['tmp_name'];
+                                $fileName=rand(9999,10000).date('Ymdhis').$fileName;
+                                move_uploaded_file($tempName,'uploads/'.$fileName);
+
+                          $insert="INSERT INTO profile set id='', pic='$fileName',about='$about', gender='$gender', dob='$dob', edu1='$education1', edu2='$education2', edu3='$education3', country='$country', date_added=NOW(), user_id='$userId'";
 
                          mysqli_query($db,$insert);
 
@@ -107,9 +129,14 @@
 
          <?php echo   $error; ?>
          <?php  echo  $success;?>
-      <form method="post" action="" id="">
+      <form method="post" action="" id="" enctype="multipart/form-data">
 
             <table width="100%" cellpadding="0" cellspaing="0">
+                   <tr>
+                      <td colspan="2">
+                           <img src="uploads/<?= $pic;?>" width="150px" height="150px" class="pic" />
+                      </td>
+                   </tr>
                    <tr>
                       <td width="30%">Profile Picture</td>
                       <td width="70%">
@@ -125,8 +152,8 @@
                    <tr>
                       <td width="30%">Gender</td>
                       <td width="70%">
-                          <input type="radio" name="gender" value="m"   <?=((isset($gender) and $gender="m")?"checked":"")?> >Male</input>
-                          <input type="radio" name="gender" value="f" <?=((isset($gender) and $gender="f")?"checked":"")?> >Female</input>
+                          <input type="radio" name="gender" value="m" checked   >Male</input>
+                          <input type="radio" name="gender" value="f"  >Female</input>
                       </td>
                    </tr>
                    <tr>

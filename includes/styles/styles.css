@@ -41,6 +41,10 @@ margin: 0px auto;
   font-size: 20px;
 }
 
+.btn:hover {
+background: #F0FFFF;
+}
+
 #header{
 width: 100%;
 padding: 10px;
@@ -78,4 +82,25 @@ padding: 5px;
 
 #header .nav ul a:hover {
 background: #555555;
+}
+
+
+.userInfo{
+ width: 30%;
+ float: left;
+ min-height: 400px;
+ padding: 10px;
+ background: #f1f1f1;
+}
+.posts{
+  width: 65%;
+  float: left;
+  min-height: 400px;
+  padding: 10px;
+  background: #b3b3b3;
+}
+
+.pic{
+border-radius: 50%;
+border: 1px solid #b3b3b3;
 }
