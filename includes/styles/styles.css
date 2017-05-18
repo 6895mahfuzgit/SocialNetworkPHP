@@ -104,3 +104,39 @@ background: #555555;
 border-radius: 50%;
 border: 1px solid #b3b3b3;
 }
+
+.notification{
+
+padding: 10px 5px 10px 5px;
+background: #f1f1f1;
+border-bottom:1px solid #b3b3b3;
+}
+
+
+.actionBtn{
+  padding: 10px;
+  margin: 5px 0px 5px 0px;
+  outline: none;
+  border: 1px solid #b3b3b3;
+  width: 100px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.actionBtn:hover {
+background: #F0FFFF;
+}
+
+.friendslist{
+width: 46%;
+padding: 10px;
+float: left;
+border-right: 1px solid #b3b3b3;
+}
+
+.notificationlist{
+width: 46%;
+float: right;
+padding: 10px;
+
+}
