@@ -96,9 +96,34 @@
           </table>
     </div>
     <div class="posts">
+         <form id="statusFrm" name="statusFrm" method="post">
+               <table  width="100%">
+                     <tr>
+                         <td>
+                              <textarea name="status" class="required" rows="6" style="width:98%;" cols="30%"></textarea>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                            <input type="submit" value="Post Status" />
+                         </td>
+                     </tr>
+               </table>
+         </form>
+
+        <div id='allPosts'>
+           Loading............
+        </div>
+
     </div>
 
 <script>
+
+ $(document).ready(function(){
+      loadPosts();
+ });
+
+
   function SendAction(type,name){
 
     $.post('handler/action.php?action=sendFriendRequest&name='+name,function(response){
@@ -109,6 +134,37 @@
         }
     });
   }
+
+  $('#statusFrm').validate({
+
+      submitHandler:function(form){
+
+        $.post('handler/action.php?action=savePost&user_id='+<?=$memberInfo['id'] ?>,$('#statusFrm').serialize(),function showInfo(responseDate){
+
+                if(responseDate == "Success.........!!!"){
+                  loadPosts();
+                   document.getElementById('statusFrm').reset();
+                }
+              alert(responseDate);
+        });
+      }
+
+    });
+
+function loadPosts(){
+        $.post('handler/action.php?action=FetchPosts&user_id='+<?=$memberInfo['id'] ?>,function(responseData){
+               $('#allPosts').html(responseData);
+
+        });
+}
+
+function LoadComment(postid){
+      $.post('handler/action.php?action=LoadAllComments&post_id='+postid,function(responseData){
+          $('#allcomments_'+postid).html(responseData);
+            $('#viewcomment_'+postid).hide();
+      });
+}
+
 </script>
 
 <?php include('footer.php');?>

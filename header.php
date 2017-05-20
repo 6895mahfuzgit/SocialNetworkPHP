@@ -5,6 +5,8 @@
           <title>Social Network</title>
           <link rel="stylesheet" href="includes/styles/styles.css"/>
           <script src="includes/jquery/jquery.js"></script>
+          <script src="includes/jquery/jquery.form.js"></script>
+            <script src="includes/jquery/valid.js"></script> 
       </head>
 <body>
      <div id="page" >
